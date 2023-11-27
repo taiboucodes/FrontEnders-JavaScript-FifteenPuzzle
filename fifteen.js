@@ -196,14 +196,11 @@ function down (x, y) { //calculates how far down a puzzlepiece should position
 }
 
 function swap(position) {
-    var tempTop = puzzlePiece[position].style.top;
-    puzzlePiece[position].style.top = spaceVertical;
-    spaceVertical = tempTop;
-
-    var tempLeft = puzzlePiece[position].style.left;
-    puzzlePiece[position].style.left = spaceHorizontal;
-    spaceHorizontal = tempLeft;
-
-    puzzlePiece[position].style.backgroundImage = "url(background.jpg)";
+    var temp = puzzlePiece[position].style.top;
+	puzzlePiece[position].style.top = spaceVertical;
+	spaceVertical = temp;
+	temp = puzzlePiece[position].style.left;
+	puzzlePiece[position].style.left = spaceHorizontal;
+	spaceHorizontal = temp;
 }
 
