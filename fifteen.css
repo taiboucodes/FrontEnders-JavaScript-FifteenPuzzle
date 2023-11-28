@@ -1,9 +1,9 @@
 body {
-	background-image: url('body.jpg');
+	background-image: url('body4.jpg');
+	background-size: 100% 130%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	background-repeat: no-repeat;
-	background-size: 100%;
 }
 #controls, #overall, #puzzlearea {
 	width: 400px;
@@ -15,6 +15,7 @@ body {
 h1 {
 	margin: 10px 0px;
 	text-align: center;
+	color: peachpuff;
 }
 /* center puzzle. */
 #centerPuzzle {
@@ -23,7 +24,7 @@ h1 {
 	margin: 0 auto;
 }
 .explanation {
-	color: aquamarine;
+	color: yellow;
 	font-weight: bold;
 }
 /* 15 puzzle slots */
