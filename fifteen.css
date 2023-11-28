@@ -69,8 +69,8 @@ h1 {
 /* Style options inside the dropdown */
 #backgroundSelector option {
     padding: 8px; /* Padding for each option */
-    background-color: #fff; /* Background of the options */
-    color: #333; /* Text color for the options */
+    background-color: #FF2826; /* Background of the options */
+    color: #fff; /* Text color for the options */
 }
 /* You can add more styles for hover states of the options if you like */
 #controls {
