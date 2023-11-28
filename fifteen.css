@@ -36,7 +36,7 @@ h1 {
 #shufflebutton {
 	width: 400px;
     padding: 10px 0; 
-    background-color: #5CDB95; 
+    background-color: #3CA411; 
     border: none; 
     color: white; 
     font-size: 18px; 
@@ -46,7 +46,33 @@ h1 {
 #shufflebutton:hover {
     background-color: #379683; 
 }
+#backgroundSelector {
+	text-align: center;
+    padding: 8px 16px;
+	width: 400px;
+	color: white;
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #FF2826; /* White background */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Slight shadow for depth */
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; /* Font style */
+    font-size: 16px; /* Larger font size for readability */
+    cursor: pointer; /* Change cursor to indicate this is a dropdown */
+}
 
+/* Style for when the dropdown is opened */
+#backgroundSelector:focus {
+    outline: none; /* Remove the default focus outline */
+    border-color: #5CDB95; /* Highlight color for the border */
+}
+
+/* Style options inside the dropdown */
+#backgroundSelector option {
+    padding: 8px; /* Padding for each option */
+    background-color: #fff; /* Background of the options */
+    color: #333; /* Text color for the options */
+}
+/* You can add more styles for hover states of the options if you like */
 #controls {
     width: 20%; 
     text-align: center; 
