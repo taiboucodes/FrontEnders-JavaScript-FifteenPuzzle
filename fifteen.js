@@ -7,6 +7,8 @@ var inform;
 var timer;
 
  window.onload = function () {
+	currentBackgroundIndex = Math.floor(Math.random() * backgrounds.length);
+    changeBackground(currentBackgroundIndex); // Pass the index to the function
 	var puzzleRegion = document.getElementById('puzzleRegion');
 	puzzlePiece = puzzleRegion.getElementsByTagName('div'); //retrieve element within puzzlearea
 	for (var i=0; i<puzzlePiece.length; i++) { //applies features to each puzzle piece 
@@ -22,8 +24,6 @@ var timer;
 				this.style.color = "#006600"; //text red when near an empty space
 				this.style.textDecoration = "underline"; //underlines number
                 this.style.cursor ="pointer";
-				this.style.opacity = "0.8";
-				this.style.backgroundImage="url('background.jpg')";
                 //sets the image for the puzzle's background 
 			}
 		};
@@ -204,5 +204,18 @@ function swap(position) {
 	temp = puzzlePiece[position].style.left;
 	puzzlePiece[position].style.left = spaceHorizontal;
 	spaceHorizontal = temp;
+}
+var currentBackgroundIndex = 0;
+var backgrounds = ['background.jpg', 'DK.jpg', 'galaxy.jpg', 'bowser.jpg'];
+
+function changeBackground(selectedIndex) {
+    // Use the index from the parameter
+    currentBackgroundIndex = selectedIndex;
+    var puzzlePieces = document.querySelectorAll('.puzzleFragment');
+    puzzlePieces.forEach(function(piece, index) {
+        piece.style.backgroundImage = 'url(' + backgrounds[currentBackgroundIndex] + ')';
+        // Recalculate background position based on the new image
+        piece.style.backgroundPosition = '-' + (index % 4 * 100) + 'px -' + (parseInt(index / 4) * 100) + 'px';
+    });
 }
 

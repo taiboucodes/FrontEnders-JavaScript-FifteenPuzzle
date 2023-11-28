@@ -62,10 +62,8 @@ h1 {
 	text-align: center;
 	vertical-align: middle;
 	width: 96px;
-	/* transition: left .5s ease, top .5s ease, transform .5s ease; */
-	transition: transform .5s;
-    transform-style: preserve-3d;
-}
+	transition: left .5s ease, top .7s ease;
+  }
 /* movable piece */
 .movablepiece:hover {
     border-color: 3px solid red; 
