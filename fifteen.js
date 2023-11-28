@@ -18,10 +18,12 @@ var timer;
 		puzzlePiece[i].onmouseover = function() { //applies features when mouse moves over puzzle pieces
 		
 			if (checkMove(parseInt(this.innerHTML))) { //checks whenever a move is made
-				this.style.border = "3px solid purple"; //purple when near an empty space
-				this.style.color = "red"; //text red when near an empty space
+				this.style.border = "3px solid red"; //purple when near an empty space
+				this.style.color = "#006600"; //text red when near an empty space
 				this.style.textDecoration = "underline"; //underlines number
-                this.style.backgroundImage="url('background.jpg')";
+                this.style.cursor ="pointer";
+				this.style.opacity = "0.8";
+				this.style.backgroundImage="url('background.jpg')";
                 //sets the image for the puzzle's background 
 			}
 		};

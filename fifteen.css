@@ -1,5 +1,5 @@
 body {
-	background-color: pink;
+	background-image: url('body.jpg');
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
 	background-repeat: no-repeat;
@@ -21,6 +21,10 @@ h1 {
 	position: relative;
 	width: 400px; 
 	margin: 0 auto;
+}
+.explanation {
+	color: aquamarine;
+	font-weight: bold;
 }
 /* 15 puzzle slots */
 #puzzleRegion {
@@ -58,10 +62,13 @@ h1 {
 	text-align: center;
 	vertical-align: middle;
 	width: 96px;
+	/* transition: left .5s ease, top .5s ease, transform .5s ease; */
+	transition: transform .5s;
+    transform-style: preserve-3d;
 }
 /* movable piece */
 .movablepiece:hover {
-    border-color: red; 
+    border-color: 3px solid red; 
     color: #006600; 
     text-decoration: underline; 
     cursor: pointer; 
