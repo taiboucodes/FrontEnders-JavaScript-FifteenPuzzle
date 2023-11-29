@@ -1,5 +1,5 @@
 body {
-	background-image: url('body4.jpg');
+	background-image: url('body.jpg');
 	background-size: 100% 130%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 14px;
@@ -70,7 +70,7 @@ h1 {
 /* Style options inside the dropdown */
 #backgroundSelector option {
     padding: 8px; /* Padding for each option */
-    background-color: #FF2826; /* Background of the options */
+    background-color: #379683; /* Background of the options */
     color: #fff; /* Text color for the options */
 }
 /* You can add more styles for hover states of the options if you like */
@@ -98,9 +98,10 @@ h1 {
     text-decoration: underline; 
     cursor: pointer; 
 }
-
 #w3c {
 	text-align: right;
+	position: relative;
+	bottom: -200px;
 }
 #w3c img {
 	border: none;

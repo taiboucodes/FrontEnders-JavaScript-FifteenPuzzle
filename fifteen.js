@@ -7,6 +7,8 @@ var inform;
 var timer;
 
  window.onload = function () {
+	
+	
 	var puzzleRegion = document.getElementById('puzzleRegion');
 	puzzlePiece = puzzleRegion.getElementsByTagName('div'); //retrieve element within puzzlearea
 	for (var i=0; i<puzzlePiece.length; i++) { //applies features to each puzzle piece 
@@ -65,6 +67,8 @@ var timer;
 			}
 		}
 	};
+	currentBackgroundIndex = Math.floor(Math.random() * backgrounds.length);
+	changeBackground(currentBackgroundIndex);
  }	
 // The checkMove function determines if the puzzle piece at the given position can be moved into an adjacent empty space.
 // 'position' is the number of the puzzle piece being checked.
@@ -104,7 +108,7 @@ function Inform() { //notifies user
 
 function win() { //notifies user that they have won
 	var body = document.getElementsByTagName('body');
-	body[0].style.backgroundImage = "url('boxart.jpeg')";
+	body[0].style.backgroundImage = "url('winner.jpg')";
 	inform = 10; //initializes notify variable
 	timer= setTimeout(Inform, 200);
 	var para=document.getElementsByClassName('explanation');
