@@ -7,8 +7,6 @@ var inform;
 var timer;
 
  window.onload = function () {
-	currentBackgroundIndex = Math.floor(Math.random() * backgrounds.length);
-    changeBackground(currentBackgroundIndex); // Pass the index to the function
 	var puzzleRegion = document.getElementById('puzzleRegion');
 	puzzlePiece = puzzleRegion.getElementsByTagName('div'); //retrieve element within puzzlearea
 	for (var i=0; i<puzzlePiece.length; i++) { //applies features to each puzzle piece 
@@ -47,57 +45,46 @@ var timer;
 	var shuffle = document.getElementById('shufflebutton'); //initializes the shuffle button
 	spaceHorizontal = '300px'; 
 	spaceVertical = '300px';
-	shuffle.onclick = function() { //activates whenever the shuffle button is clicked
-		for (var i=0; i<300; i++) {
-			var rando = parseInt(Math.random()* 100) %4; //random number created for shuffling pieces
-			if (rando == 0) {
-				var temp = up(spaceHorizontal, spaceVertical); 
-				if ( temp != -1) {
-					swap(temp);
-				}
+	// This function is triggered when the shuffle button is clicked.
+    // It shuffles the puzzle pieces by randomly moving the empty space in different directions.
+	shuffle.onclick = function() {
+		for (var i = 0; i < 300; i++) { // iterates 300 times
+			var rando = parseInt(Math.random() * 100) % 4; //random number created for shuffling pieces
+			var temp;
+			if (rando === 0) {
+				temp = movePiece(spaceHorizontal, spaceVertical, 'up');
+			} else if (rando === 1) {
+				temp = movePiece(spaceHorizontal, spaceVertical, 'down');
+			} else if (rando === 2) {
+				temp = movePiece(spaceHorizontal, spaceVertical, 'left');
+			} else if (rando === 3) {
+				temp = movePiece(spaceHorizontal, spaceVertical, 'right');
 			}
-			if (rando == 1) {
-				var temp = down(spaceHorizontal, spaceVertical);
-				if ( temp != -1) 
-				{
-					swap(temp);
-				}
-			}
-			if (rando == 2) {
-				var temp = left(spaceHorizontal, spaceVertical);
-				if ( temp != -1)
-				{
-					swap(temp);
-				}
-			}
-			if (rando == 3) {
-				var temp = right(spaceHorizontal, spaceVertical);
-				if (temp != -1) {
-					swap(temp);
-				}
+			if (temp != -1) {
+				swap(temp);
 			}
 		}
 	};
-};
-
-function checkMove(position) { // returns true if designated piece can be moved into an empty slot
-
-	if (left(spaceHorizontal, spaceVertical) == (position-1)) {
-		return true;
-	}
-	if (down(spaceHorizontal, spaceVertical) == (position-1)) {
-		return true;
-	}
-	if (up(spaceHorizontal, spaceVertical) == (position-1)) {
-		return true;
-	}
-	if (right(spaceHorizontal, spaceVertical) == (position-1)) {
-		return true;
-	}
+ }	
+// The checkMove function determines if the puzzle piece at the given position can be moved into an adjacent empty space.
+// 'position' is the number of the puzzle piece being checked.
+function checkMove(position) {
+    if (movePiece(spaceHorizontal, spaceVertical, 'left') == (position - 1)) {
+        return true;
+    }
+    if (movePiece(spaceHorizontal, spaceVertical, 'down') == (position - 1)) {
+        return true;
+    }
+    if (movePiece(spaceHorizontal, spaceVertical, 'up') == (position - 1)) {
+        return true;
+    }
+    if (movePiece(spaceHorizontal, spaceVertical, 'right') == (position - 1)) {
+        return true;
+    }
+    return false;
 }
 
 function Inform() { //notifies user 
-	
 	inform --; //decrements  
 	if (inform == 0) { //does value reach end 
 		var body = document.getElementsByTagName('body');
@@ -114,6 +101,7 @@ function Inform() { //notifies user
 	}
     timer= setTimeout(Inform, 200); //notifies the user for 2 secs
 }
+
 function win() { //notifies user that they have won
 	var body = document.getElementsByTagName('body');
 	body[0].style.backgroundImage = "url('boxart.jpeg')";
@@ -135,66 +123,43 @@ function finish() { //checks when the game reaches its end
 	}
 	return flag;
 }
+// The function checks if a puzzle piece can be moved into an empty slot.
+// It takes the position of the puzzle piece as an argument.
+function movePiece(x, y, direction) { 
+    var coordinateX = parseInt(x);
+    var coordinateY = parseInt(y);
+    var newX, newY;
 
-function left(x, y) { //calculates how far to the left a puzzlepiece should position
-
-	var cordinateX = parseInt(x);
-	var cordinateY = parseInt(y);
-	if (cordinateX > 0) {
-		for (var i = 0; i < puzzlePiece.length; i++) {
-			if (parseInt(puzzlePiece[i].style.left) + 100 == cordinateX && parseInt(puzzlePiece[i].style.top) == cordinateY) {
-				return i;
-			} 
-		}
-	}
-	else {
-		return -1;
-	}
-}
-
-function right (x, y) { //calculates how far to the right a puzzlepiece should position
-
-	var cordinateX = parseInt(x);
-	var cordinateY = parseInt(y);
-	if (cordinateX < 300) {
-		for (var i =0; i<puzzlePiece.length; i++){
-			if (parseInt(puzzlePiece[i].style.left) - 100 == cordinateX && parseInt(puzzlePiece[i].style.top) == cordinateY) {
-				return i;
-			}
-		}
-	}
-	else {
-		return -1;
-	} 
-}
-
-function up(x, y) { //calculates how far up a puzzlepiece should position
-	var cordinateX = parseInt(x);
-	var cordinateY = parseInt(y);
-	if (cordinateY > 0) {
-		for (var i=0; i<puzzlePiece.length; i++) {
-			if (parseInt(puzzlePiece[i].style.top) + 100 == cordinateY && parseInt(puzzlePiece[i].style.left) == cordinateX) {
-				return i;
-			}
-		} 
-	}
-	else {
-		return -1;
-	}
-}
-function down (x, y) { //calculates how far down a puzzlepiece should position
-	var cordinateX = parseInt(x);
-	var cordinateY = parseInt(y);
-	if (cordinateY < 300) {
-		for (var i=0; i<puzzlePiece.length; i++) {
-			if (parseInt(puzzlePiece[i].style.top) - 100 == cordinateY && parseInt(puzzlePiece[i].style.left) == cordinateX) {
-				return i;
-			}
-		}
-	}
-	else {
-		return -1;
-	} 
+    switch (direction) {
+        case 'left':
+            newX = coordinateX - 100;
+            newY = coordinateY;
+            if (coordinateX <= 0) return -1;
+            break;
+        case 'right':
+            newX = coordinateX + 100;
+            newY = coordinateY;
+            if (coordinateX >= 300) return -1;
+            break;
+        case 'up':
+            newX = coordinateX;
+            newY = coordinateY - 100;
+            if (coordinateY <= 0) return -1;
+            break;
+        case 'down':
+            newX = coordinateX;
+            newY = coordinateY + 100;
+            if (coordinateY >= 300) return -1;
+            break;
+        default:
+            return -1; // Invalid direction
+    }
+    for (var i = 0; i < puzzlePiece.length; i++) {
+        if (parseInt(puzzlePiece[i].style.left) == newX && parseInt(puzzlePiece[i].style.top) == newY) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 function swap(position) {
@@ -218,4 +183,3 @@ function changeBackground(selectedIndex) {
         piece.style.backgroundPosition = '-' + (index % 4 * 100) + 'px -' + (parseInt(index / 4) * 100) + 'px';
     });
 }
-
