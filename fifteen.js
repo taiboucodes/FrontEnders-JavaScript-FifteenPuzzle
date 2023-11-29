@@ -7,8 +7,6 @@ var inform;
 var timer;
 
  window.onload = function () {
-	
-	
 	var puzzleRegion = document.getElementById('puzzleRegion');
 	puzzlePiece = puzzleRegion.getElementsByTagName('div'); //retrieve element within puzzlearea
 	for (var i=0; i<puzzlePiece.length; i++) { //applies features to each puzzle piece 
