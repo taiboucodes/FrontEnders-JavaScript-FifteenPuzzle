@@ -1,0 +1,5 @@
+3s, 3 moves
+7s, 3 moves
+2s, 3 moves
+1s, 3 moves
+2s, 2 moves
