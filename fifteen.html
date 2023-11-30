@@ -23,6 +23,31 @@
 			<div>9</div>  <div>10</div> <div>11</div> <div>12</div>
 			<div>13</div> <div>14</div> <div>15</div>
 		</div>
+		<div id="leaderboard">
+		        <h2>Leaderboard</h2>
+		        <table id="leaderboardTable">
+		            <thead>
+		                <tr>
+		                    <th>Rank</th>
+		                    <th>Time</th>
+		                    <th>Moves</th>
+		                </tr>
+		            </thead>
+		            <tbody>
+		    <!-- Rows for leaderboard with ranks #1 to #10 -->
+						<tr><td>#1</td><td></td><td></td></tr>
+						<tr><td>#2</td><td></td><td></td></tr>
+						<tr><td>#3</td><td></td><td></td></tr>
+						<tr><td>#4</td><td></td><td></td></tr>
+						<tr><td>#5</td><td></td><td></td></tr>
+						<tr><td>#6</td><td></td><td></td></tr>
+						<tr><td>#7</td><td></td><td></td></tr>
+						<tr><td>#8</td><td></td><td></td></tr>
+						<tr><td>#9</td><td></td><td></td></tr>
+						<tr><td>#10</td><td></td><td></td></tr>
+					</tbody>
+		        </table>
+		    </div>
 
 		<div id="controls">
 			<button id="shufflebutton">Shuffle</button><br><br>
@@ -34,7 +59,10 @@
 			</select>
 		</div>
 	</div>
-
+	<audio controls autoplay>
+        	<source src="blackRider.mp3" type="audio/mp3">
+        	Your browser does not support the audio element.
+   	 </audio>
 	<p class="explanation">
 		American puzzle author and mathematician Sam Loyd is often falsely credited with creating the puzzle; indeed, 
 		<br> Loyd claimed from 1891 until his death in 1911 that he invented it. The puzzle was actually created around 1874 
@@ -45,6 +73,6 @@
 		<a href="//jigsaw.w3.org/css-validator/check/referer"><img src="w3c-css.png" alt="Valid CSS" /></a>
 		<a href=""><img src="jslint.png" alt="JavaScript Lint" /></a>
 	</div>
-
+	<div id="timer">Time: 0 seconds</div>
 </body>
 </html>
