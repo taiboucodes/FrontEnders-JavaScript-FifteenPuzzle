@@ -122,6 +122,8 @@ function win() { //notifies user that they have won
 	timer= setTimeout(Inform, 200);
 	var para=document.getElementsByClassName('explanation');
 	// para[0].style.visibility="hidden"; 
+	clearInterval(timerInterval);
+	saveWinningInfo(seconds, moveCount);
 }
 
 function finish() { //checks when the game reaches its end
@@ -195,4 +197,67 @@ function changeBackground(selectedIndex) {
         // Recalculate background position based on the new image
         piece.style.backgroundPosition = '-' + (index % 4 * 100) + 'px -' + (parseInt(index / 4) * 100) + 'px';
     });
+}
+function updateTimer() {
+    seconds++;
+    timerElement.innerHTML = 'Time: ' + seconds + 's';
+}
+function saveWinningInfo(timeInSeconds, moves) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'updateBestTimes.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle any response if needed
+        }
+    };
+
+    // Send the request with the winning time and moves as POST parameters
+    xhr.send('winningTime=' + encodeURIComponent(timeInSeconds + 's') + '&moves=' + encodeURIComponent(moves + ' moves'));
+}
+
+function initializeTimer() {
+    seconds = 0; // Reset the seconds
+	moveCount = 0; // Reset the move count
+    updateTimer(); // Update the timer display immediately
+
+    // Clear any existing timer interval
+    clearInterval(timerInterval);
+
+    // Start a new timer interval
+    timerInterval = setInterval(updateTimer, 1000);
+}
+function loadLeaderboard() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                var leaderboardData = JSON.parse(xhr.responseText);
+                console.log('Leaderboard Data:', leaderboardData); // Add this line
+                displayLeaderboard(leaderboardData);
+            } else {
+                console.error('Failed to load leaderboard. Status:', xhr.status);
+            }
+        }
+    };
+    xhr.open('GET', 'getBestTimes.php', true);
+    xhr.send();
+}
+
+function displayLeaderboard(leaderboardData) {
+    var leaderboardTable = document.getElementById('leaderboardTable');
+    var tbody = leaderboardTable.getElementsByTagName('tbody')[0];
+    tbody.innerHTML = ''; // Clear existing rows
+
+    for (var i = 0; i < leaderboardData.length; i++) {
+        var rowData = leaderboardData[i].split(', ');
+
+        var rank = i + 1;
+        var time = rowData[0];
+        var moves = rowData[1];
+
+        var row = '<tr><td>#' + rank + '</td><td>' + time + '</td><td>' + moves + '</td></tr>';
+        console.log('Row:', row); // Add this line
+        tbody.innerHTML += row;
+    }
 }
