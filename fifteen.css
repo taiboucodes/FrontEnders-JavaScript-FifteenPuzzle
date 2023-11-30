@@ -106,3 +106,29 @@ h1 {
 #w3c img {
 	border: none;
 }
+#timer {
+    font-size: 18px;
+    margin-top: 10px;
+    text-align: center;
+    color: black;
+}
+#leaderboard {
+    float: right;
+    margin-top: 20px;
+}
+
+#leaderboardTable {
+    border-collapse: collapse;
+    width: 400px; /* Set the width to your desired value */
+    margin-top: 20px; /* Add margin-top if needed */
+}
+
+#leaderboardTable th, #leaderboardTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#leaderboardTable th {
+    background-color: #f2f2f2;
+}
