@@ -5,6 +5,12 @@ var spaceHorizontal;
 var puzzlePiece; 
 var inform;
 var timer;
+var timerElement;
+var seconds = 0;
+var moveCount = 0; 
+var timerInterval;
+var currentBackgroundIndex = 0;
+var backgrounds = ['background.jpg', 'DK.jpg', 'galaxy.jpg', 'bowser.jpg'];
 
  window.onload = function () {
 	var puzzleRegion = document.getElementById('puzzleRegion');
