@@ -9,8 +9,6 @@ var timerElement;
 var seconds = 0;
 var moveCount = 0; 
 var timerInterval;
-var currentBackgroundIndex = 0;
-var backgrounds = ['background.jpg', 'DK.jpg', 'galaxy.jpg', 'bowser.jpg'];
 
  window.onload = function () {
 	loadLeaderboard();
@@ -186,7 +184,7 @@ function swap(position) {
 	spaceHorizontal = temp;
 }
 var currentBackgroundIndex = 0;
-var backgrounds = ['background.jpg', 'DK.jpg', 'galaxy.jpg', 'bowser.jpg'];
+var backgrounds = ['background.jpg', 'donkeykong.jpg', 'galaxy.jpg', 'Bowser.png'];
 
 function changeBackground(selectedIndex) {
     // Use the index from the parameter
