@@ -13,6 +13,10 @@ var currentBackgroundIndex = 0;
 var backgrounds = ['background.jpg', 'DK.jpg', 'galaxy.jpg', 'bowser.jpg'];
 
  window.onload = function () {
+	loadLeaderboard();
+	timerElement = document.getElementById('timer');
+   	timerInterval = setInterval(updateTimer, 1000);
+	
 	var puzzleRegion = document.getElementById('puzzleRegion');
 	puzzlePiece = puzzleRegion.getElementsByTagName('div'); //retrieve element within puzzlearea
 	for (var i=0; i<puzzlePiece.length; i++) { //applies features to each puzzle piece 
@@ -40,6 +44,7 @@ var backgrounds = ['background.jpg', 'DK.jpg', 'galaxy.jpg', 'bowser.jpg'];
 
 			if (checkMove(parseInt(this.innerHTML))) { //checks if puzzle piece can move to an empty space
 				swap(this.innerHTML-1); //if space is empty it will move the piece to the empty slot
+				moveCount++;
 				if (finish()) { //checks whether or not the user has completed the game
 					win(); //informs user of win 
 				}
