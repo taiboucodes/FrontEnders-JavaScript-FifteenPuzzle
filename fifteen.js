@@ -277,7 +277,3 @@ function displayLeaderboard(leaderboardData) {
     }
     
 }
-var myDiv = document.getElementById("textContent");
-
-    // Add text using innerHTML
-    myDiv.innerHTML = "Hello, this is some text added using innerHTML.";
