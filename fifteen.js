@@ -13,7 +13,7 @@ var timerInterval;
  window.onload = function () {
 	loadLeaderboard();
 	timerElement = document.getElementById('timer');
-   	timerInterval = setInterval(updateTimer, 1000);
+   
 	
 	var puzzleRegion = document.getElementById('puzzleRegion');
 	puzzlePiece = puzzleRegion.getElementsByTagName('div'); //retrieve element within puzzlearea
@@ -56,7 +56,14 @@ var timerInterval;
 	spaceVertical = '300px';
 	// This function is triggered when the shuffle button is clicked.
     // It shuffles the puzzle pieces by randomly moving the empty space in different directions.
-	shuffle.onclick = function() {
+     shuffle.onclick = function () {
+        
+        const music = document.getElementById("music")
+         music.play();
+         var button = document.getElementById("shufflebutton");
+         button.textContent = "Shuffle"; 
+         timerInterval = setInterval(updateTimer, 1000);
+        
 		for (var i = 0; i < 300; i++) { // iterates 300 times
 			var rando = parseInt(Math.random() * 100) % 4; //random number created for shuffling pieces
 			var temp;
@@ -72,7 +79,8 @@ var timerInterval;
 			if (temp != -1) {
 				swap(temp);
 			}
-		}
+        }
+
 	};
 	currentBackgroundIndex = Math.floor(Math.random() * backgrounds.length);
 	changeBackground(currentBackgroundIndex);
@@ -95,28 +103,28 @@ function checkMove(position) {
     return false;
 }
 
+
+
 function Inform() { //notifies user 
 	inform --; //decrements  
 	if (inform == 0) { //does value reach end 
-		var body = document.getElementsByTagName('body');
-		body[0].style.backgroundImage = "url('winner.gif')"; //reverts to original page background
-		alert('You are a winner ! Shuffle to play again'); //informs player they won
+        document.getElementById("youWon").style.display = "block";
 		var para=document.getElementsByClassName('explanation');
 	    para[0].style.visibility="visible"; 
 		return;
 	}
 	else if (inform % 2) {
 		var body = document.getElementsByTagName('body'); 
-	    body[0].style.backgroundImage = "url('winner.gif')";
+	    //body[0].style.backgroundImage = "url('winner.gif')";
 	    //sets background pic upon completion
 	}
-    timer= setTimeout(Inform, 200); //notifies the user for 2 secs
+    //timer= setTimeout(Inform, 200); //notifies the user for 2 secs
 }
 
 function win() { //notifies user that they have won
 	var body = document.getElementsByTagName('body');
 	body[0].style.backgroundImage = "url('winner.jpg')";
-	inform = 10; //initializes notify variable
+	inform = 1; //initializes notify variable
 	timer= setTimeout(Inform, 200);
 	var para=document.getElementsByClassName('explanation');
 	// para[0].style.visibility="hidden"; 
@@ -173,6 +181,10 @@ function movePiece(x, y, direction) {
         }
     }
     return -1;
+}
+
+function makeItPop() {
+    document.getElementById("rulesPopUp").style.display = "block";
 }
 
 function swap(position) {
@@ -242,6 +254,11 @@ function loadLeaderboard() {
     xhr.send();
 }
 
+function playAudio() {
+    const music = document.getElementById("music")
+    music.play();
+}
+
 function displayLeaderboard(leaderboardData) {
     var leaderboardTable = document.getElementById('leaderboardTable');
     var tbody = leaderboardTable.getElementsByTagName('tbody')[0];
@@ -258,4 +275,9 @@ function displayLeaderboard(leaderboardData) {
         console.log('Row:', row); // Add this line
         tbody.innerHTML += row;
     }
+    
 }
+var myDiv = document.getElementById("textContent");
+
+    // Add text using innerHTML
+    myDiv.innerHTML = "Hello, this is some text added using innerHTML.";
