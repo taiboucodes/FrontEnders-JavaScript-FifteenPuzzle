@@ -202,7 +202,12 @@ function movePiece(x, y, direction) {
 }
 
 function makeItPop() {
-    document.getElementById("rulesPopUp").style.display = "block";
+    var rulesPopUp = document.getElementById("rulesPopUp");
+    if (rulesPopUp.style.display === "block") {
+        rulesPopUp.style.display = "none";
+    } else {
+        rulesPopUp.style.display = "block";
+    }
 }
 
 function swap(position) {
