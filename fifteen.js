@@ -122,11 +122,9 @@ function Inform() { //notifies user
 
 function win() { //notifies user that they have won
 	var body = document.getElementsByTagName('body');
-	body[0].style.backgroundImage = "url('winner.jpg')";
 	inform = 1; //initializes notify variable
 	timer= setTimeout(Inform, 200);
 	var para=document.getElementsByClassName('explanation');
-	// para[0].style.visibility="hidden"; 
 	clearInterval(timerInterval);
 	saveWinningInfo(seconds, moveCount);
 	var winningInfo = getMostRecentWinningInfo();
