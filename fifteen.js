@@ -129,6 +129,24 @@ function win() { //notifies user that they have won
 	// para[0].style.visibility="hidden"; 
 	clearInterval(timerInterval);
 	saveWinningInfo(seconds, moveCount);
+	var winningInfo = getMostRecentWinningInfo();
+    var textContentDiv = document.getElementById('textContent');
+    textContentDiv.innerHTML = 'Your Time: ' + winningInfo.time + ' | Moves: ' + winningInfo.moves;
+}
+function getMostRecentWinningInfo() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'getBestTimes.php', false);
+    xhr.send();
+
+    if (xhr.status == 200) {
+        var leaderboardData = JSON.parse(xhr.responseText);
+        if (leaderboardData.length > 0) {
+            var mostRecentInfo = leaderboardData[leaderboardData.length - 1].split(', ');
+            return { time: mostRecentInfo[0], moves: mostRecentInfo[1] };
+        }
+    }
+
+    return { time: 'N/A', moves: 'N/A' };
 }
 
 function finish() { //checks when the game reaches its end
@@ -183,7 +201,12 @@ function movePiece(x, y, direction) {
 }
 
 function makeItPop() {
-    document.getElementById("rulesPopUp").style.display = "block";
+    var rulesPopUp = document.getElementById("rulesPopUp");
+    if (rulesPopUp.style.display === "block") {
+        rulesPopUp.style.display = "none";
+    } else {
+        rulesPopUp.style.display = "block";
+    }
 }
 
 function swap(position) {
