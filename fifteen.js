@@ -51,11 +51,11 @@ var timerInterval;
 		};
 	}
 
-	var shuffle = document.getElementById('shufflebutton'); //initializes the shuffle button
+	var shuffle = document.getElementById('shufflebutton'); 
 	spaceHorizontal = '300px'; 
-	spaceVertical = '300px';
-	// This function is triggered when the shuffle button is clicked.
-    // It shuffles the puzzle pieces by randomly moving the empty space in different directions.
+     spaceVertical = '300px';
+     
+
      shuffle.onclick = function () {
         
         const music = document.getElementById("music")
@@ -64,8 +64,8 @@ var timerInterval;
          button.textContent = "Shuffle"; 
          timerInterval = setInterval(updateTimer, 1000);
         
-		for (var i = 0; i < 300; i++) { // iterates 300 times
-			var rando = parseInt(Math.random() * 100) % 4; //random number created for shuffling pieces
+		for (var i = 0; i < 300; i++) { 
+			var rando = parseInt(Math.random() * 100) % 4; 
 			var temp;
 			if (rando === 0) {
 				temp = movePiece(spaceHorizontal, spaceVertical, 'up');
@@ -80,7 +80,6 @@ var timerInterval;
 				swap(temp);
 			}
         }
-
 	};
 	currentBackgroundIndex = Math.floor(Math.random() * backgrounds.length);
 	changeBackground(currentBackgroundIndex);
@@ -199,12 +198,10 @@ var currentBackgroundIndex = 0;
 var backgrounds = ['background.jpg', 'donkeykong.jpg', 'galaxy.jpg', 'Bowser.png'];
 
 function changeBackground(selectedIndex) {
-    // Use the index from the parameter
     currentBackgroundIndex = selectedIndex;
     var puzzlePieces = document.querySelectorAll('.puzzleFragment');
     puzzlePieces.forEach(function(piece, index) {
         piece.style.backgroundImage = 'url(' + backgrounds[currentBackgroundIndex] + ')';
-        // Recalculate background position based on the new image
         piece.style.backgroundPosition = '-' + (index % 4 * 100) + 'px -' + (parseInt(index / 4) * 100) + 'px';
     });
 }
@@ -212,6 +209,19 @@ function updateTimer() {
     seconds++;
     timerElement.innerHTML = 'Time: ' + seconds + 's';
 }
+function initializeTimer() {
+    seconds = 0; // Reset the seconds
+	moveCount = 0; // Reset the move count
+    updateTimer(); // Update the timer display immediately
+
+    // Clear any existing timer interval
+    clearInterval(timerInterval);
+
+    // Start a new timer interval
+    timerInterval = setInterval(updateTimer, 1000);
+}
+
+
 function saveWinningInfo(timeInSeconds, moves) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', 'updateBestTimes.php', true);
@@ -226,17 +236,7 @@ function saveWinningInfo(timeInSeconds, moves) {
     xhr.send('winningTime=' + encodeURIComponent(timeInSeconds + 's') + '&moves=' + encodeURIComponent(moves + ' moves'));
 }
 
-function initializeTimer() {
-    seconds = 0; // Reset the seconds
-	moveCount = 0; // Reset the move count
-    updateTimer(); // Update the timer display immediately
 
-    // Clear any existing timer interval
-    clearInterval(timerInterval);
-
-    // Start a new timer interval
-    timerInterval = setInterval(updateTimer, 1000);
-}
 function loadLeaderboard() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
