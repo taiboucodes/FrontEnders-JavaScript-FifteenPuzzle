@@ -167,7 +167,7 @@ h2{
     background-color: #f2f2f2;
 }
 
-.rulesButton{
+#rulesButton{
     background-color: #EAA3A5;
     width: 400px;
     padding: 8px;
@@ -177,6 +177,11 @@ h2{
     font-size: 18px; 
     cursor: pointer; 
     transition: background-color 0.3s; 
+}
+#restart{
+    background-color: #E17e81;
+    border: none; 
+    border-radius: 2px;
 }
 
 #rulesPopUp,#youWon{

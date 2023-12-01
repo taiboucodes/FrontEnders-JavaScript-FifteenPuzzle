@@ -104,9 +104,9 @@ function checkMove(position) {
 
 
 
-function Inform() { //notifies user 
-	inform --; //decrements  
-	if (inform == 0) { //does value reach end 
+function Inform() {  
+	inform --; 
+	if (inform == 0) { 
         document.getElementById("youWon").style.display = "block";
 		var para=document.getElementsByClassName('explanation');
 	    para[0].style.visibility="visible"; 
@@ -114,10 +114,7 @@ function Inform() { //notifies user
 	}
 	else if (inform % 2) {
 		var body = document.getElementsByTagName('body'); 
-	    //body[0].style.backgroundImage = "url('winner.gif')";
-	    //sets background pic upon completion
 	}
-    //timer= setTimeout(Inform, 200); //notifies the user for 2 secs
 }
 
 function win() { //notifies user that they have won
@@ -147,6 +144,19 @@ function getMostRecentWinningInfo() {
     }
 
     return { time: 'N/A', moves: 'N/A' };
+}
+function saveWinningInfo(timeInSeconds, moves) {
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'updateBestTimes.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            // Handle any response if needed
+        }
+    };
+
+    // Send the request with the winning time and moves as POST parameters
+    xhr.send('winningTime=' + encodeURIComponent(timeInSeconds + 's') + '&moves=' + encodeURIComponent(moves + ' moves'));
 }
 
 function finish() { //checks when the game reaches its end
@@ -202,10 +212,13 @@ function movePiece(x, y, direction) {
 
 function makeItPop() {
     var rulesPopUp = document.getElementById("rulesPopUp");
+    var rulesButton = document.getElementById("rulesButton");
     if (rulesPopUp.style.display === "block") {
+        rulesButton.textContent = "View Rules";
         rulesPopUp.style.display = "none";
     } else {
         rulesPopUp.style.display = "block";
+        rulesButton.textContent = "Hide Rules";
     }
 }
 
@@ -245,21 +258,6 @@ function initializeTimer() {
 }
 
 
-function saveWinningInfo(timeInSeconds, moves) {
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'updateBestTimes.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // Handle any response if needed
-        }
-    };
-
-    // Send the request with the winning time and moves as POST parameters
-    xhr.send('winningTime=' + encodeURIComponent(timeInSeconds + 's') + '&moves=' + encodeURIComponent(moves + ' moves'));
-}
-
-
 function loadLeaderboard() {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
@@ -280,6 +278,9 @@ function loadLeaderboard() {
 function playAudio() {
     const music = document.getElementById("music")
     music.play();
+}
+function restart() {
+    location.reload();
 }
 
 function displayLeaderboard(leaderboardData) {

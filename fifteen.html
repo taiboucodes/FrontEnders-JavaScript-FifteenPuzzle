@@ -15,7 +15,7 @@
 <div class="flex-body">
 
 <div class="leftSide">
-	<button class="rulesButton" onclick="makeItPop()">View Rules</button><br>
+	<button id="rulesButton" onclick="makeItPop()">View Rules</button><br>
 	<div id="centerPuzzle">
 		<div id="timer">Time: 0 seconds</div>
 		<div id="puzzleRegion">
@@ -74,8 +74,6 @@
 </div>
 	
 	
-		
-
 	<div id="w3c">
 		<a href="//validator.w3.org/check/referer"><img src="w3c-xhtml.png" alt="Valid XHTML 1.1" /></a>
 		<a href="//jigsaw.w3.org/css-validator/check/referer"><img src="w3c-css.png" alt="Valid CSS" /></a>
@@ -84,18 +82,19 @@
 
 	<div id="rulesPopUp">
 
-		<p class="explanation"> The goal of the fifteen puzzle is to un-jumble its fifteen squares by repeatedly making moves that slide squares into the empty space. How quickly can you solve it?</p> <br>
+		<p class="explanation"> The goal of the fifteen puzzle is to un-jumble its fifteen squares by repeatedly making moves that slide squares into the empty space.</p> <br>
 		<p class="explanation">
-			American puzzle author and mathematician Sam Loyd is often falsely credited with creating the puzzle; indeed, 
+			American puzzle author and mathematician Sam Loyd is often falsely credited with creating the puzzle;
 			<br> Loyd claimed from 1891 until his death in 1911 that he invented it. The puzzle was actually created around 1874 
 			<br> by Noyes Palmer Chapman, a postmaster in Canastota, New York.</p>
+		<p> Close the rules and click Begin to get Started.  How quickly can you solve it?</p>
 
 	</div>
-
 	<div id="youWon">
 		<p> Congratulations, you won!!!!</p> <br>
 		<img src="todd.gif" alt="Image 1">
 		<div id="textContent"></div>
+		<button id="restart" onclick="restart()">Restart</button>
 	</div>
 
 </body>
