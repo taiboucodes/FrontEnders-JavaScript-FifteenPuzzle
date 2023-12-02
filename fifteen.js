@@ -9,6 +9,8 @@ var timerElement;
 var seconds = 0;
 var moveCount = 0; 
 var timerInterval;
+var gameStarted = false;
+var shuffleAllowed = true;
 
  window.onload = function () {
 	loadLeaderboard();
@@ -56,31 +58,42 @@ var timerInterval;
      spaceVertical = '300px';
      
 
-     shuffle.onclick = function () {
-        
-        const music = document.getElementById("music")
-         music.play();
-         var button = document.getElementById("shufflebutton");
-         button.textContent = "Shuffle"; 
-         timerInterval = setInterval(updateTimer, 1000);
-        
-		for (var i = 0; i < 300; i++) { 
-			var rando = parseInt(Math.random() * 100) % 4; 
-			var temp;
-			if (rando === 0) {
-				temp = movePiece(spaceHorizontal, spaceVertical, 'up');
-			} else if (rando === 1) {
-				temp = movePiece(spaceHorizontal, spaceVertical, 'down');
-			} else if (rando === 2) {
-				temp = movePiece(spaceHorizontal, spaceVertical, 'left');
-			} else if (rando === 3) {
-				temp = movePiece(spaceHorizontal, spaceVertical, 'right');
-			}
-			if (temp != -1) {
-				swap(temp);
-			}
+shuffle.onclick = function () {
+    const music = document.getElementById("music");
+
+    if (shuffleAllowed) {
+        shuffleAllowed = false;
+
+        if (!gameStarted) {
+            gameStarted = true;
+            var button = document.getElementById("shufflebutton");
+            button.textContent = "Shuffle";
+            timerInterval = setInterval(updateTimer, 1000);
         }
-	};
+
+        for (var i = 0; i < 300; i++) {
+            var rando = parseInt(Math.random() * 100) % 4;
+            var temp;
+            if (rando === 0) {
+                temp = movePiece(spaceHorizontal, spaceVertical, 'up');
+            } else if (rando === 1) {
+                temp = movePiece(spaceHorizontal, spaceVertical, 'down');
+            } else if (rando === 2) {
+                temp = movePiece(spaceHorizontal, spaceVertical, 'left');
+            } else if (rando === 3) {
+                temp = movePiece(spaceHorizontal, spaceVertical, 'right');
+            }
+            if (temp != -1) {
+                swap(temp);
+            }
+        }
+
+        // Allow shuffling again after a delay (adjust the timeout duration if needed)
+        setTimeout(function () {
+            shuffleAllowed = true;
+        }, 1);
+    }
+};
 	currentBackgroundIndex = Math.floor(Math.random() * backgrounds.length);
 	changeBackground(currentBackgroundIndex);
  }	
