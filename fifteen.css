@@ -126,19 +126,12 @@ h2{
   }
 /* movable piece */
 .movablepiece:hover {
-    border-color: 3px solid red; 
+    border: solid 3px red; 
     color: #006600; 
     text-decoration: underline; 
     cursor: pointer; 
 }
-#w3c {
-	text-align: right;
-	position: relative;
-	bottom: -200px;
-}
-#w3c img {
-	border: none;
-}
+
 #timer {
     font-size: 18px;
     margin-top: 10px;
@@ -213,4 +206,10 @@ th:nth-child(2) {
 
 th:nth-child(3) {
     color: #EAA3A5;
+}
+.validator{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
 }
