@@ -277,6 +277,11 @@ function playAudio() {
     const music = document.getElementById("music")
     music.play();
 }
+function pauseAudio() {
+    const music = document.getElementById("music")
+    music.pause();
+}
+
 function restart() {
     location.reload();
 }

@@ -1,5 +1,10 @@
-3s, 3 moves
-7s, 3 moves
-2s, 3 moves
-1s, 3 moves
-2s, 2 moves
+133s, 64 moves
+155s, 70 moves
+155s, 71 moves
+100s, 32 moves
+205s, 84 moves
+123s, 54 moves
+105s, 90 moves
+195s, 88 moves
+188s, 52 moves
+255s, 121 moves
