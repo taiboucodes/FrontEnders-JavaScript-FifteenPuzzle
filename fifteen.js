@@ -60,6 +60,7 @@ var shuffleAllowed = true;
 
 shuffle.onclick = function () {
     const music = document.getElementById("music");
+    music.play();
 
     if (shuffleAllowed) {
         shuffleAllowed = false;
